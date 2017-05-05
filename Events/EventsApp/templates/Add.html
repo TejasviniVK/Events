@@ -1,0 +1,71 @@
+{% extends "Main1.html" %}
+<title>{% block title %} Add {% endblock %}</title>
+{% block events %}
+    <div class="large-4 small-6 small-centered large-centered columns">
+        <form data-abide class="myform" id="addform">
+            <h4 style="padding: 20px;text-align: center">Event Details</h4>
+            <br>
+
+
+            <div class="row">
+
+                <div class="large-4 columns left ">Event Name</div>
+                <div class="large-3 medium-6 small-6 columns left">
+                    <input placeholder="Enter  Name" required pattern="[A-Za-z0-9]" style="width: auto"
+                           type="text" name="Event_Name" id="name_textbox">
+                    <small class="error">Name is required</small>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="large-4 columns left ">Event Date</div>
+                <div class="large-3 medium-6 small-6 columns left">
+                    <input placeholder="Event Date" required style="width: 190px"
+                           type="date" name="Event_date" id="date_textbox">
+                    <small class="error">Date is required</small>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="large-4 columns left ">Event Info</div>
+                <div class="large-3 medium-6 small-6 columns left">
+                    <input placeholder="Event Info" style="width: auto"
+                           required type="text" name="Event_Info" id="info_textbox">
+                    <small class="error">Info is required</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-4 columns left ">Place</div>
+                <div class="large-3 medium-6 small-6 columns left">
+                    <select onchange="CheckPlace(this.value)" id="selectplace" required style="width: 190px"
+                            name="Event_Place">
+                        <option value="">Select the city</option>
+                        {% for each in Place %}
+                            <option value='{{ each.city }}'>{{ each.city }}</option>
+                        {% endfor %}
+                        <option value="other">Other</option>
+                    </select>
+                    <small class="error">Place is required</small>
+
+                </div>
+
+
+            </div>
+        <div class="row">
+             <div class="large-3 large-offset-4 columns left">
+                    <input type="text" name="new_place" id="textbox_place" style="display: none;width: auto"
+                           placeholder=" Enter your city ">
+                </div>
+        </div>
+            <br>
+
+            <div class="large-4 large-centered columns ">
+                <input class="button" type="button" value="Submit" id="addeventbutton">
+            </div>
+        </form>
+        <div id="successmsg"></div>
+    </div>
+{% endblock %}

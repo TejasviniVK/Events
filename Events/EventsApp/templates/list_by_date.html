@@ -1,0 +1,25 @@
+<div style="text-align: center">The following are the list of events available:</div><br>
+<div >
+    <table style="text-align: center" id="tableforfilter">
+        <thead >
+        <tr style="background-color: cornflowerblue">
+            <th>Event_Name</th>
+            <th>Event_Date</th>
+            <th>Event_Place</th>
+            <th>Event_Info</th>
+        </tr>
+        </thead>
+
+        {% for itemvalue in data %}
+            <tr style="background-color: lightskyblue">
+
+                <td>{{ itemvalue.name }}</td>
+                <td>{{ itemvalue.date }}</td>
+                <td>{{ itemvalue.place }}</td>
+                <td>{{ itemvalue.info }}</td>
+
+            </tr>
+        {% endfor %}
+
+    </table>
+</div>

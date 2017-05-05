@@ -1,0 +1,8 @@
+
+
+
+table tr td ,table tr th {
+    border: 3px solid white;
+    border-collapse: collapse;
+    text-align: center;
+}

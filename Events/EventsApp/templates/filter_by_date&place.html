@@ -1,0 +1,48 @@
+
+{% extends "filters.html" %}
+<title>{% block title %} Date&Place Filter {% endblock %}</title>
+
+
+{% block filter_events %}
+
+    <form class="checkvisibility" data-abide>
+        <div class="row" style="text-align: center">{% csrf_token %}
+            <div style="padding: 50px;margin-left: 15%" class="small-8 columns">
+                <div class="row">
+                    <div class="small-3 columns">
+                        <label for="right-label" class="right inline">Select date</label>
+                    </div>
+                    <div class="small-9 columns">
+                        <input type="date" required name="Date_Place" id="dateplacevalue">
+                        <small class="error">Date is required</small>
+                    </div>
+                    </div>
+
+                <div class="row">
+                    <div class="small-3 columns">
+                        <label for="right-label" class="right inline">Select Place: </label>
+                    </div>
+                    <div class="small-9 columns">
+                         <select id="selectplace1" name="Place_Date" required>
+                            <option value="">Select the city</option>
+                            {% for each in Place %}
+                                <option value='{{ each.city }}'>{{ each.city }}</option>
+                            {% endfor %}
+                            </option>
+                        </select>
+                         <small class="error"> Place is required</small>
+
+                    <br><br>
+
+                    <div class="small-9 columns">
+                        <input class="button"  type="button" value="Submit"  id="dateplacebutton">
+                        <br>
+                      <div id="dateplacesuccessmsg" onclick="tableculture()"></div>
+                </div>
+            </div>
+                    </div>
+                </div>
+            </div>
+    </form>
+
+{% endblock %}

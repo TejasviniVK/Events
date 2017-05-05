@@ -1,0 +1,60 @@
+{% extends "filters.html" %}
+<title>{% block title %} Events Filter {% endblock %}</title>
+
+
+
+
+{% block filter_events %}
+
+    <div>
+        <table id="tableforevents" align="center" id="filter_today_by_date_table" >
+
+
+            <tr style="background-color: cornflowerblue">
+                <th><b>Event_Name</b></th>
+                <th><b>Event_Date</b></th>
+                <th><b>Event_Place</b></th>
+                <th><b>Event_Info</b></th>
+            </tr>
+            <tr>
+                <td colspan="4" style="background-color: lightblue ">TODAYS EVENTS</td>
+            </tr>
+
+            {% for itemvalue in todaylist %}
+                <tr style="background-color: lightskyblue">
+                    <td>{{ itemvalue.name }}</td>
+                    <td>{{ itemvalue.date }}</td>
+                    <td>{{ itemvalue.place }}</td>
+                    <td>{{ itemvalue.info }}</td>
+
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="4" style="background-color: lightblue" >UPCOMING EVENTS</td>
+            </tr>
+            {% for itemvalue in upcominglist %}
+                <tr style="background-color: lightskyblue">
+                    <td>{{ itemvalue.name }}</td>
+                    <td>{{ itemvalue.date }}</td>
+                    <td>{{ itemvalue.place }}</td>
+                    <td>{{ itemvalue.info }}</td>
+
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="4" style="background-color: lightblue" >PAST EVENTS</td>
+            </tr>
+            {% for itemvalue in pastlist %}
+                <tr style="background-color: lightskyblue">
+                    <td>{{ itemvalue.name }}</td>
+                    <td>{{ itemvalue.date }}</td>
+                    <td>{{ itemvalue.place }}</td>
+                    <td>{{ itemvalue.info }}</td>
+
+                </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+{% endblock %}

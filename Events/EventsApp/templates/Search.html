@@ -1,0 +1,44 @@
+{% extends "Main1.html" %}
+
+<title>{% block title %} Search {% endblock %}</title>
+
+{% block events %}
+
+
+<div class="large-10">
+
+            <div class="row" style="margin-left: 20%" data-abide>{% csrf_token %}
+                    <div style="padding: 50px" class="small-8 columns">
+                        <div class="row">
+                            <div class="large-5 columns">
+                                <label for="right-label"  class="right inline">Select the Event :</label>
+                            </div>
+                    <div class="large-7  columns">
+                        <form class="checkvisibility" method="post" data-abide>{% csrf_token %}
+                                <select id="selectevent"  required name="searchevent">
+                                    <option value="">Select your event</option>
+                                    {% for item in event_name %}
+                                        <option value='{{ item.id }}'>{{ item.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <small class="error">An event is required</small>
+
+                                <br><br>
+                                <input type="button" class="button" value="Submit" style="margin-left: 24%" id="searcheventbutton">
+
+                                <div  id="searchsuccessmsg"></div>
+                                <div id="msg"></div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+</div>
+
+{% endblock %}
+

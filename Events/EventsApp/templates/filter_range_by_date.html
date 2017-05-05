@@ -1,0 +1,44 @@
+
+{% extends "filters.html" %}
+<title>{% block title %} DateRange Filter {% endblock %}</title>
+
+
+
+{% block filter_events %}
+
+    <form class="checkvisibility" data-abide>
+        <div class="row" style="text-align: center">{% csrf_token %}
+            <div style="padding: 50px;margin-left: 15%" class="small-8 columns">
+                <div class="row">
+                    <div class="small-3 columns">
+                        <label for="right-label" class="right inline">From : </label>
+                    </div>
+                    <div class="small-9 columns">
+                        <input required type="date" name="Date1" id="date1">
+                        <small class="error"> Date is required</small>
+                    </div>
+                    </div>
+
+                <div class="row">
+                    <div class="small-3 columns">
+                        <label for="right-label" class="right inline">To : </label>
+                    </div>
+                    <div class="small-9 columns">
+                        <input required type="date" name="Date2" id="date2">
+                        <small class="error"> Date is required</small>
+                    </div>
+
+                    <div class="small-9 columns">
+                        <input required class="button" type="button" value="Submit"  id="rangebydatebutton" >
+                        <small class="error">Date is required</small>
+
+
+                    </div>
+                                <div  id="daterangesuccessmsg"></div>
+
+                    </div>
+                </div>
+            </div>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "Main1.html" %}
+<title>{% block title %} Filters {% endblock %}</title>
+{% block events %}
+
+
+<div class="large-8  columns" style="margin-left: 28%">
+
+
+        <ul class="inline-list">
+  <li><a href="/list_date">list by date</a></li>
+  <li><a href="/list_date_place">list by date and place</a></li>
+  <li><a href="/list_place">list by place</a></li>
+  <li><a href="/range_date">range by date</a></li>
+  <li><a href="/upcoming_past_today">upcoming_past_today events</a> </li>
+
+</ul>
+
+</div>
+
+{% block filter_events %}
+
+{% endblock %}
+
+
+  {% endblock %}

@@ -1,0 +1,34 @@
+
+
+{% extends "filters.html" %}
+<title>{% block title %} DateFilter {% endblock %}</title>
+
+{% block filter_events %}
+    <form  class="checkvisibility" data-abide>
+        <div class="row" style="text-align: center">{% csrf_token %}
+            <div style="padding: 50px;margin-left: 15%"  class="small-8 columns">
+
+                <div class="row">
+                    <div class="small-3 columns">
+                        <label for="right-label" class="right inline">Enter the event date </label>
+                    </div>
+                    <div class="small-9 columns">
+                        <input type="date" name="Date_Search" id="datevalue" required>
+                        <small class="error">Date is required</small>
+                    </div>
+
+                    <div class="small-9 columns">
+                        <input class="button" type="button" value="Submit" id="datebutton" onclick="tableculture()">
+
+
+                        <div id="datesuccessmsg"></div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+
+{% endblock %}

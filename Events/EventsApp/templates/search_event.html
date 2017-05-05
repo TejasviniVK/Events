@@ -1,0 +1,52 @@
+
+
+    <div class="large-10   columns">
+
+        <h4 style="padding: 20px;text-align: center">Event Details</h4>
+        <br>
+
+        <div class="row">
+            <div class="large-7 medium-6 small-4 columns  left ">Event Name</div>
+            <div class="large-5 medium-6 small-6 columns right ">
+                <input style="width: 190px" type="text" id="name" name="Event_Name" value="{{ data.name}}"></div>
+        </div>
+
+
+        <div class="row">
+            <div class="large-7  medium-6 small-4 columns left ">Event Date</div>
+            <div class="large-5 medium-6 small-6 columns right">
+                <input style="width: 190px" type="date" id="date" name="Event_Date" value="{{ data.date|date:"Y-m-d" }}"></div>
+        </div>
+
+
+        <div class="row">
+            <div class="large-7 medium-6 small-4 columns left ">Event Info</div>
+            <div class="large-5 medium-6 small-6 columns right">
+                <input placeholder="Event Info" style="width: 190px" id="info" name="Event_Info"
+                       value="{{ data.info}}"></div>
+        </div>
+
+
+        <div class="row">
+            <div class="large-7 medium-6 small-4 columns left ">Place</div>
+            <div class="large-5 medium-6 small-6 columns right">
+                <input style="width:190px" value="{{ data.place }}" id="place" name="Event_Place" >
+                <datalist for="place">
+                    {% for each in cities %}
+                        <option value="{{ each.city }}">{{ each.city }}</option>
+                    {% endfor %}
+
+                </datalist>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <input type="text" class="textbox" id="hiddenID" value="{{ data.id }}" name="search_ID" style="display: none">
+
+    <div align="center">
+        <input id="updatebutton" type="button" value="Update Event" onclick="updateevent()">
+    <input id="deletebutton" type="button" value="Delete Event" onclick="deleteevent()">
+    </div>
+
+

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>EventsApp</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/static/CSS/Css.css">
+</head>
+<body>
+<br>
+
+<div style="margin-left: 38%;font-size: 230%">EVENTS STASH</div>
+
+<div style="position: absolute ">
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li><a data-toggle="tab" href="#home">Home</a></li>
+            <li><a data-toggle="tab" href="#add">Add Event</a></li>
+            <li><a data-toggle="tab" href="#search">Search Event</a></li>
+            <li><a data-toggle="tab" href="#filters">Filters</a></li>
+        </ul>
+    </div>
+    <br><br><br>
+
+
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+            <div style="margin-left: 39%">
+                <h3><p>Welcome to Events Application</p></h3>
+            </div>
+            <details style="margin-left: 39%">
+                <summary>About the Application</summary>
+                <br>
+
+                <p> This application helps you to store the details of your event and retrieve them whenever you want
+                    to.A very simple application to save the events details. </p>
+            </details>
+            <cite>
+                <address style="margin-left: 39%">
+                    Jubliee Hills opposite to pedhamma temple.
+                </address>
+            </cite>
+            <br><br><br>
+
+        </div>
+
+
+        <div id="add" class="tab-pane fade">
+            <div style="margin-top: 50px;margin-left:495px;font-size: 30px;"><strong>EVENT DETAILS</strong></div>
+            <br><br>
+
+            <form style="margin-left:39% ">{% csrf_token %}
+                <div>
+                    Event Name :
+                    <input type="text" name="Event_Name" style="margin-left: 3%" placeholder="Event Name" id="name_textbox" class="textbox">
+                </div>
+                <br>
+
+                <div>
+                    Event Date :
+                    <input type="date" name="Event_Date" style="margin-left: 4%" id="date_textbox" class="textbox">
+                </div>
+                <br>
+
+                <div>
+                    Event Info :
+                    <input type="text" name="Event_Info" required class="textbox" style="margin-left: 5%" id="info_textbox" placeholder="Enter the text" maxlength="120">
+
+                </div>
+                <br>
+
+                <div>
+
+                    Place :
+                    <select onchange="CheckPlace(this.value)" id="selectplace" required style="margin-left: 8%" name="Event_Place">
+                        <div style="margin-left: 8%">
+                            <option value="">Select the city</option>
+                            {% for each in data %}
+                                <option value='{{ each }}'>{{ each }}</option>
+                            {% endfor %}
+                            <option value="other">Other</option>
+                        </div>
+                    </select>
+                    <br>
+                    <input type="text" name="new_place" id="textbox_place" style="display: none;margin-left: 14.5%" placeholder=" Enter your city " class="textbox">
+                </div>
+                 <br>
+                <input type="button" style="margin-left: 18%" value="Submit" id="addeventbutton"><br><br><br><br>
+
+                <div id="successmsg"></div>
+                <div id="fieldsmessage"></div>
+            <div id="specialcharactermsg"></div>
+
+            </form>
+        </div>
+
+
+        <div id="search" class="tab-pane fade">
+            <form data-abide="ajax"  method="post">{% csrf_token %}
+                <div style="margin-left:39%;margin-top:5%">Enter the name to search :
+                    <select class="selectpicker" data-live-search="true" id="selectevent" style="margin-left: 8%;" name="searchevent">
+                        <option value="">Select your event</option>
+                        {% for item,itemvalue in dataname.iteritems %}
+                            <option value='{{ item }}'>{{ itemvalue }}</option>
+                        {% endfor %}
+                    </select>
+                    <br><br>
+                    <input type="button" value="Submit" style="margin-left: 24%" id="searcheventbutton">
+
+                    <div style="margin-left: -40%"  id="searchsuccessmsg"></div>
+                    <div id="searchfailmsg1"></div>
+                </div>
+            </form>
+        </div>
+
+
+        <div id="filters" class="tab-pane fade">
+            <div class="container">
+                <ul class="nav nav-tabs">
+                    <li><a data-toggle="tab" href="#list_date">list by date</a></li>
+                    <li><a data-toggle="tab" href="#list_date_place">list by date and place</a></li>
+                    <li><a data-toggle="tab" href="#list_place">list by place</a></li>
+                    <li><a data-toggle="tab" href="#range_date">range by date</a></li>
+                </ul>
+            </div>
+
+
+            <div class="tab-content">
+                <div id="list_date" class="tab-pane fade">
+                    <form data-abide="ajax" method="POST" id="list_by_date">{% csrf_token %}
+                        <div style="margin-left:39%;margin-top: 10%">Enter the event date :&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="date" name="Date_Search" id="datevalue" class="textbox" required><br><br><br>
+                            <input type="button" value="Submit"  style="margin-left: 20%" id="datebutton">
+                            <br><br>
+                        </div>
+                    </form>
+                    <br>
+                    <div style="margin-left: 30%"  id="datesuccessmsg"></div>
+                    <div  id="datefailmsg1"></div>
+
+                </div>
+
+
+                <div id="list_date_place" class="tab-pane fade">
+                    <form data-abide="ajax" style="margin-left: 39%" method="POST">{% csrf_token %}
+                        <div style="margin-top: 10%">Enter the date to be searched :&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input name="Date_Place" type="date" id="dateplacevalue" class="textbox" required>
+                        </div>
+                        <br><br><br>
+
+                        Select the Place :
+                        <div style="margin-left: 30%;margin-top: -3%"><select id="selectplace1" name="Place_Date" required>
+                            <option value="">Select the city</option>
+                            {% for each in data %}
+                                <option value='{{ each }}'>{{ each }}</option>
+                            {% endfor %}
+                            </option>
+                        </select></div>
+                        <br><br>
+                        <input type="button" value="Submit"  style="margin-left: 20%" id="dateplacebutton">
+                    </form>
+                <br>
+                    <div style="margin-left: 47%" id="dateplacesuccessmsg"></div>
+                    <div style="margin-left: 47%" id="dateplacefailmsg1"></div>
+                </div>
+
+
+                <div id="list_place" class="tab-pane fade">
+                    <form data-abide="ajax" method="POST">{% csrf_token %}
+                        <div style="margin-left:39%;margin-top: 10%">Select the Place :&nbsp;&nbsp;&nbsp;&nbsp;
+                            <select id="selectplace3" name="Place_Search" required>
+                                <option value="">Select the city</option>
+                                {% for each in data %}
+                                    <option value='{{ each }}'>{{ each }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <br><br>
+                        <input type="button" value="Submit" style="margin-left: 52%" id="placebutton">
+                    </form><br>
+                <div style="margin-left: 47%" id="placesuccessmsg"></div>
+                <div style="margin-left: 47%" id="placefailmsg1"></div>
+                </div>
+
+
+                <div id="range_date" class="tab-pane fade">
+                    <form data-abide="ajax" style="margin-left:39%;margin-top: 5%" method="POST"> {% csrf_token %}
+                        <br> Enter two different dates to search for events: <br><br><br>
+                        From: <input name="Date1" style="margin-left: 5.5%" type="date" id="date1" class="textbox " required><br><br><br>
+                        To:<input name="Date2" style="margin-left: 8%" type="date" class="textbox " id="date2" required><br><br><br>
+                        <input type="button" style="margin-left: 15%" value="Submit"  id="rangebydatebutton">
+                    </form><br>
+                    <div style="margin-left: 47%" id="daterangesuccessmsg"></div>
+                    <div style="margin-left: 47%" id="daterangefailmsg1"></div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/JavaScripting.js"></script>
+</body>
+</html>
